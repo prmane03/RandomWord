@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Disney Characters</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tw-elements/dist/css/index.min.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        body{
+            background: #FF0099;  /* fallback for old browsers */
+            background: -webkit-linear-gradient(to right, #493240, #FF0099);  /* Chrome 10-25, Safari 5.1-6 */
+            background: linear-gradient(to right, #493240, #FF0099); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+        }
+    </style>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
+            },
+          }
+        }
+      }
+    </script>
+    
+</head>
+<body class="w-full">
+
+    <h2 class="my-4  text-2xl font-bold text-center "><span class="p-2 my-2 text-4xl text-white opacity-90" style="text-shadow:1px 1px 2px gray">Random Word For You</span></h2>
+ 
+    <div class="overflow-hidden shadow-lg rounded-lg h-auto w-80 md:w-80 cursor-pointer m-auto p-4 bg-indigo-50 transition duration-500 ease-in-out transform hover:translate-y-5 hover:shadow-2xl">
+        <a href="#" class="w-full block h-full">
+            <img alt="identicon" id="img" src="" class="max-h-60 w-full object-cover"/>
+            <div class="w-full">
+                <p class="text-indigo-500 text-md font-medium my-2">
+                    #Random Word
+                </p>
+                <p class="text-gray-800 dark:text-white text-xl font-medium mb-2" >
+                    <i class=" mr-3 fa-solid fa-font"></i><span id="word"></span>
+                </p>
+                <p class="text-gray-800 dark:text-white text-xl font-medium mb-2">
+                    <i class=" mr-3 fa-solid fa-volume-high" onclick="speak()"></i><span id="pronunciation"></span>
+                </p>
+                <p class="text-gray-600 dark:text-gray-300 font-light text-md" >
+                    <i class=" mr-3 fa-solid fa-book"></i><span id="definition"></span>
+                </p>
+                <div class="flex flex-wrap justify-between items-center mt-4 border-t-2 pt-5">
+                    <div class="text-xs mr-2 py-1.5 px-4 text-gray-600 bg-blue-200 rounded-2xl font-bold" id="time">
+                    </div>
+                    <div class="text-xs mr-2 py-1.5 px-4 text-gray-600 bg-blue-200 rounded-2xl font-bold cursor-pointer " id="reset">
+                        Generate
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+
+    <script>
+        var word = document.getElementById("word")
+        var definition = document.getElementById("definition")
+        var pronunciation = document.getElementById("pronunciation")
+        var time = document.getElementById("time")
+        var img = document.getElementById("img")
+        var reset = document.getElementById("reset")
+
+        let speech = new SpeechSynthesisUtterance();
+
+        speech.lang = "en-US";
+        speech.text = pronunciation.value;
+        speech.volume = 1;
+        speech.rate = 1;
+        speech.pitch = 1;                
+
+
+        function speak(speech){
+
+            window.speechSynthesis.speak();
+
+        }
+
+        async function getWord() {
+            try {
+                let res = await fetch("https://random-words-api.vercel.app/word/");
+                var result = await res.json();
+               
+                word.innerHTML = result[0].word
+                pronunciation.innerHTML = result[0].pronunciation
+                definition.innerHTML = result[0].definition
+                img.src = "https://avatars.dicebear.com/api/identicon/"+result[0].word+".svg"
+                time.innerHTML = new Date().toLocaleString();
+                
+            }catch (error) {    
+                console.log(error);
+            }
+        }
+        getWord();
+
+        reset.addEventListener('click',()=>{
+            getWord();
+        })
+
+        </script>
+    
+</body>
+</html>
