@@ -4,4 +4,4 @@
 
 ![Generate Word]( ./preview.png)
 
-[![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=prmane03repo=github-readme-stats)](https://github.com/prmane03-readme-stats)
+[![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=prmane03repo=RandomWord)](https://github.com/prmane03/RandomWord)
