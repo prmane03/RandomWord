@@ -5,20 +5,20 @@
         var img = document.getElementById("img")
         var reset = document.getElementById("reset")
 
-        let speech = new SpeechSynthesisUtterance();
+//         let speech = new SpeechSynthesisUtterance();
 
-        speech.lang = "en-US";
-        speech.text = pronunciation.value;
-        speech.volume = 1;
-        speech.rate = 1;
-        speech.pitch = 1;                
+//         speech.lang = "en-US";
+//         speech.text = pronunciation.value;
+//         speech.volume = 1;
+//         speech.rate = 1;
+//         speech.pitch = 1;                
 
 
-        function speak(speech){
+//         function speak(speech){
 
-            window.speechSynthesis.speak();
+//             window.speechSynthesis.speak();
 
-        }
+//         }
 
         async function getWord() {
             try {
