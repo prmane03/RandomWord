@@ -5,18 +5,18 @@
         var img = document.getElementById("img")
         var reset = document.getElementById("reset")
 
-         let speech = new SpeechSynthesisUtterance();
+//         let speech = new SpeechSynthesisUtterance();
 
-         speech.lang = "en-US";
-         speech.text = pronunciation.value;
+//        speech.lang = "en-US";
+ //        speech.text = pronunciation.value;
 //         speech.volume = 1;
 //         speech.rate = 1;
 //         speech.pitch = 1;                
 
 
-       function speak(speech){
-
-            window.speechSynthesis.speak();
+       function speak(){
+        window.speechSynthesis.speak(new SpeechSynthesisUtterance(pronunciation.value));
+           // window.speechSynthesis.speak();
 
          }
 
