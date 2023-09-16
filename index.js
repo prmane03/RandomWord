@@ -8,14 +8,14 @@
 //         let speech = new SpeechSynthesisUtterance();
 
 //        speech.lang = "en-US";
- //        speech.text = pronunciation.value;
+ //        speech.text = pronunciation.innerText;
 //         speech.volume = 1;
 //         speech.rate = 1;
 //         speech.pitch = 1;                
 
 
        function speak(){
-        window.speechSynthesis.speak(new SpeechSynthesisUtterance(pronunciation.value));
+        window.speechSynthesis.speak(new SpeechSynthesisUtterance(pronunciation.innerText));
            // window.speechSynthesis.speak();
 
          }
